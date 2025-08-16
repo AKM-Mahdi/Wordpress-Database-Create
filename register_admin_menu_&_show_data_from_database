@@ -1,0 +1,31 @@
+// create admin page 
+    function register_admin_page(){
+        add_menu_page(
+            "DB DEMO", 
+            "Db Demo", 
+            "manage_options", 
+            "db-demo", 
+            [ $this ,"admin_page"] , 
+            "dashicons-admin-generic", 
+            26
+        );
+    }
+
+
+// Get data & print
+    function admin_page(){
+        global $wpdb;
+        $table_name= $wpdb->prefix . "db_demo";
+        $persons = $wpdb->get_results("SELECT * FROM $table_name");
+
+        ?> 
+        <div class="wrap">
+            <h2>DB DEMO TITLE</h2>
+        </div>
+        <?php 
+
+        echo "<pre>";
+        print_r($persons);
+        echo "</pre>";
+
+    }
