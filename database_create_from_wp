@@ -8,10 +8,11 @@ class Db_Demo{
         $table_name =$wpdb->prefix . "db_demo";
         $charset_collate = $wpdb->get_charset_collate();
 
-        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        $sql = "CREATE TABLE $table_name (
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         name tinytext NOT NULL,
         email VARCHAR(100) NOT NULL,
+        phone VARCHAR(20) NULL,
         created_at datetime  NOT NULL DEFAULT CURRENT_TIMESTAMP , 
         PRIMARY KEY  (id)
         ) $charset_collate;";
@@ -19,6 +20,8 @@ class Db_Demo{
         require_once(ABSPATH ."wp-admin/includes/upgrade.php");
         dbDelta($sql);
     }
+
+
 }
 
 new Db_Demo();
